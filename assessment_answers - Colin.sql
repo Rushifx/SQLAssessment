@@ -26,7 +26,7 @@ SELECT SUM(`studentCount`) AS "Total Students in New York"
 FROM (
 	SELECT u.city, COUNT(u.user_id) AS "studentCount"
 	FROM users u
-	WHERE u.city LIKE "%New York%"
+	WHERE u.city = "New York"
 	GROUP BY u.city
 	ORDER BY `studentCount`
 ) AS TotalSum;
@@ -56,7 +56,7 @@ FROM(
 	FROM users u
 	JOIN progress p
 	ON u.user_id = p.user_id
-	WHERE u.city LIKE "%New York%"
+	WHERE u.city = "New York"
 	GROUP BY u.user_id
 )AS Total;
 -- 7. What courses are the Chicago Students taking?
@@ -68,8 +68,8 @@ FROM(
 	FROM users u
 	JOIN progress p
 	ON u.user_id = p.user_id
-	WHERE u.city LIKE "%Chicago%"
+	WHERE u.city = "Chicago"
 	GROUP BY u.user_id
 )AS Total;
 
--- There seems to be a West Chicago and West New York which i noticed from an earlier mistake which may explain different numbers than if you were to directly do a WHERE u.city = "New York" or "Chicago" which is why i used LIKE
+-- There seems to be a West Chicago and West New York which i noticed from an earlier mistake
